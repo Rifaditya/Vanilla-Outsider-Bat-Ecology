@@ -110,4 +110,25 @@ public abstract class BatMixin extends AmbientCreature implements BatEcologyEnti
         SwarmLogic.tickColony((Bat)(Object)this, level);
         ci.cancel(); 
     }
+    @Override
+    protected net.minecraft.world.InteractionResult mobInteract(net.minecraft.world.entity.player.Player player, net.minecraft.world.InteractionHand hand) {
+        net.minecraft.world.item.ItemStack itemStack = player.getItemInHand(hand);
+        if (itemStack.is(net.minecraft.world.item.Items.SPIDER_EYE)) {
+            if (!this.level().isClientSide()) {
+                // Heal bat
+                ((Bat)(Object)this).heal(2.0F); // 1 Heart
+                
+                // Construct particle/sound logic (Optional polish)
+                 this.playSound(net.minecraft.sounds.SoundEvents.GENERIC_EAT.value(), 1.0F, 1.0F);
+
+                // Consume item
+                if (!player.getAbilities().instabuild) {
+                    itemStack.shrink(1);
+                }
+                return net.minecraft.world.InteractionResult.SUCCESS;
+            }
+            return net.minecraft.world.InteractionResult.CONSUME;
+        }
+        return super.mobInteract(player, hand);
+    }
 }

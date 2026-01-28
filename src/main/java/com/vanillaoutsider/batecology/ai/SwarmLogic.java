@@ -62,11 +62,20 @@ public class SwarmLogic {
     }
 
     private static void handleLeaderMovement(Bat bat, ServerLevel level) {
-        // Leader uses Navigation (Smart) if available, or just wanders smarter.
-        if (bat.getNavigation().isDone()) {
-             // Pick a random spot 10 blocks away, but ensure it's safe
-             // This is the "Smart" wandering.
-             // We can defer this to standard random Stroll for now.
+        // Leader uses Navigation (Smart)
+        if (bat.getNavigation().isDone() || bat.getRandom().nextInt(50) == 0) {
+            // Pick a random spot 10 blocks away
+            RandomSource random = bat.getRandom();
+            double x = bat.getX() + (random.nextDouble() - 0.5) * 20.0;
+            double y = bat.getY() + (random.nextDouble() - 0.5) * 10.0;
+            double z = bat.getZ() + (random.nextDouble() - 0.5) * 20.0;
+            
+            BlockPos target = BlockPos.containing(x, y, z);
+            
+            // Validate: Must be air and in world bounds
+            if (level.isEmptyBlock(target) && level.isInWorldBounds(target)) {
+                 bat.getNavigation().moveTo(x, y, z, 1.0);
+            }
         }
     }
 
