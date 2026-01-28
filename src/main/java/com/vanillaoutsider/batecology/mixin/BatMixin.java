@@ -62,9 +62,8 @@ public abstract class BatMixin extends AmbientCreature implements BatEcologyEnti
         super(entityType, level);
     }
 
-    @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
+    @Inject(method = "defineSynchedData", at = @At("TAIL"))
+    protected void defineBatEcologyData(SynchedEntityData.Builder builder, CallbackInfo ci) {
         builder.define(LEADER_REF, Optional.empty());
         builder.define(COLONY_ID, -1); // -1 = No Colony / Loner
     }
