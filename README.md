@@ -1,6 +1,6 @@
 # Vanilla Outsider: Bat Ecology
 
-![Version](https://img.shields.io/badge/Minecraft-26.1-green) ![License](https://img.shields.io/badge/License-MIT-blue)
+![Version](https://img.shields.io/badge/Minecraft-26.1-green) ![License](https://img.shields.io/badge/License-GPLv3-blue)
 
 > *Some call them pests. We call them the night shift.*
 

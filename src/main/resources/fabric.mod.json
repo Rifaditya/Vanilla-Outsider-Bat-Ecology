@@ -11,7 +11,7 @@
         "homepage": "https://example.com/",
         "sources": "https://github.com/VanillaOutsider/BatEcology"
     },
-    "license": "MIT",
+    "license": "GPL-3.0-or-later",
     "icon": "assets/batecology/icon.png",
     "environment": "*",
     "entrypoints": {
