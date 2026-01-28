@@ -92,12 +92,7 @@ public abstract class BatMixin extends AmbientCreature implements BatEcologyEnti
         }
     }
     
-    @Inject(method = "remove", at = @At("HEAD"))
-    private void onRemove(Entity.RemovalReason reason, CallbackInfo ci) {
-        if (!this.level().isClientSide()) {
-            InternalBatRegistry.unregister((Bat) (Object) this);
-        }
-    }
+
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void tickSwarm(CallbackInfo ci) {

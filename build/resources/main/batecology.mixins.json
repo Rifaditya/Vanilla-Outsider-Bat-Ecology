@@ -4,7 +4,8 @@
     "compatibilityLevel": "JAVA_25",
     "mixins": [
         "BatMixin",
-        "MobMixin"
+        "MobMixin",
+        "EntityMixin"
     ],
     "injectors": {
         "defaultRequire": 1
