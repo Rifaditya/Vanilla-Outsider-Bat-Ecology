@@ -1,7 +1,9 @@
 package com.vanillaoutsider.batecology.mixin;
 
 import com.vanillaoutsider.batecology.access.BatEcologyEntity;
+import com.vanillaoutsider.batecology.ai.BatMoveControl; // [NEW] Import
 import com.vanillaoutsider.batecology.ai.BatSwarmAI;
+import com.vanillaoutsider.batecology.ai.SwarmLogic; // [NEW] Import
 import com.vanillaoutsider.batecology.social.core.InternalBatRegistry;
 import com.vanillaoutsider.batecology.spawn.BatSpawningLogic;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -84,6 +86,7 @@ public abstract class BatMixin extends AmbientCreature implements BatEcologyEnti
     @Inject(method = "<init>", at = @At("TAIL"))
     private void initAI(EntityType type, Level level, CallbackInfo ci) {
         if (!level.isClientSide()) {
+            this.moveControl = new BatMoveControl((Bat) (Object) this); // [NEW] Chunk Tether
             this.swarmAI = new BatSwarmAI((Bat) (Object) this);
             InternalBatRegistry.register((Bat) (Object) this);
             
@@ -92,7 +95,6 @@ public abstract class BatMixin extends AmbientCreature implements BatEcologyEnti
         }
     }
     
-
 
     @Inject(method = "tick", at = @At("HEAD"))
     private void tickSwarm(CallbackInfo ci) {
@@ -104,10 +106,9 @@ public abstract class BatMixin extends AmbientCreature implements BatEcologyEnti
     }
 
     @Inject(method = "customServerAiStep", at = @At("HEAD"), cancellable = true)
-    private void overrideVanillaAI(ServerLevel level, CallbackInfo ci) {
-        if (this.swarmAI != null && this.swarmAI.shouldSuppressVanillaAI()) {
-            ci.cancel();
-            super.customServerAiStep(level);
-        }
+    private void swarmAiStep(ServerLevel level, CallbackInfo ci) {
+        // Realism Override: Call SwarmLogic (Stateless Boids)
+        SwarmLogic.tickColony((Bat)(Object)this, level);
+        ci.cancel(); 
     }
 }

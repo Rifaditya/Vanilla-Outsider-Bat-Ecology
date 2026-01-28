@@ -1,7 +1,7 @@
 {
     "schemaVersion": 1,
     "id": "batecology",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "name": "Bat Ecology",
     "description": "Enhances bats with swarm intelligence, pollination, and ecological roles.",
     "authors": [
