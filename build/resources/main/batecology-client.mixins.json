@@ -1,0 +1,11 @@
+{
+    "required": true,
+    "package": "com.vanillaoutsider.batecology.mixin.client",
+    "compatibilityLevel": "JAVA_25",
+    "client": [
+        "ParticleResourcesMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

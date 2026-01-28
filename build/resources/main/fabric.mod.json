@@ -1,0 +1,35 @@
+{
+    "schemaVersion": 1,
+    "id": "batecology",
+    "version": "1.0.1",
+    "name": "Bat Ecology",
+    "description": "Enhances bats with swarm intelligence, pollination, and ecological roles.",
+    "authors": [
+        "Vanilla Outsider"
+    ],
+    "contact": {
+        "homepage": "https://example.com/",
+        "sources": "https://github.com/VanillaOutsider/BatEcology"
+    },
+    "license": "MIT",
+    "icon": "assets/batecology/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.vanillaoutsider.batecology.BatEcologyMod"
+        ],
+        "client": [
+            "com.vanillaoutsider.batecology.client.BatEcologyClient"
+        ]
+    },
+    "mixins": [
+        "batecology.mixins.json",
+        "batecology-client.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.16.9",
+        "minecraft": "~26.1-",
+        "java": ">=25",
+        "fabric-api": "*"
+    }
+}
