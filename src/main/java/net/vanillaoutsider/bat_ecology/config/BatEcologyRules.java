@@ -12,10 +12,14 @@ import net.minecraft.world.level.gamerules.GameRuleCategory;
 public class BatEcologyRules {
 
         public static GameRule<Integer> BAT_ROOST_RANGE;
-        public static GameRule<Integer> BAT_GUANO_RATE;
+        public static GameRule<Integer> BAT_GUANO_INTERVAL;
         public static GameRule<Integer> BAT_SWARM_MAX;
-        public static GameRule<Integer> BAT_POLLINATE_CHANCE;
         public static GameRule<Integer> BAT_MAX_COLONY_SCALE;
+        public static GameRule<Integer> BAT_SPAWN_MULT;
+
+        // Custom Category
+        public static final GameRuleCategory BAT_ECOLOGY = GameRuleCategory
+                        .register(Identifier.fromNamespaceAndPath("bat_ecology", "main"));
 
         public static void register() {
                 // Load Global Configuration Template
@@ -24,31 +28,31 @@ public class BatEcologyRules {
                 // Range: Blocks | [Default: Configured, Min: 1]
                 BAT_ROOST_RANGE = GameRuleBuilder.forInteger(BatEcologyConfig.getRoostRange())
                                 .minValue(1)
-                                .category(GameRuleCategory.MOBS)
+                                .category(BAT_ECOLOGY)
                                 .buildAndRegister(Identifier.fromNamespaceAndPath("bat_ecology", "roost_range"));
 
-                // Rate: Permille (per 1000 ticks) | [Default: Configured, Min: 0]
-                BAT_GUANO_RATE = GameRuleBuilder.forInteger(BatEcologyConfig.getGuanoRate())
-                                .minValue(0)
-                                .category(GameRuleCategory.MOBS)
-                                .buildAndRegister(Identifier.fromNamespaceAndPath("bat_ecology", "guano_rate"));
+                // Interval: Ticks between drops | [Default: 200 (10s), Min: 1]
+                BAT_GUANO_INTERVAL = GameRuleBuilder.forInteger(BatEcologyConfig.getGuanoInterval())
+                                .minValue(1)
+                                .category(BAT_ECOLOGY)
+                                .buildAndRegister(Identifier.fromNamespaceAndPath("bat_ecology", "guano_interval"));
 
                 // Max Swarm Size: Count | [Default: Configured, Min: 2]
                 BAT_SWARM_MAX = GameRuleBuilder.forInteger(BatEcologyConfig.getSwarmMax())
                                 .minValue(2)
-                                .category(GameRuleCategory.SPAWNING)
+                                .category(BAT_ECOLOGY)
                                 .buildAndRegister(Identifier.fromNamespaceAndPath("bat_ecology", "swarm_max"));
-
-                // Pollination Chance: 1/x per second | [Default: Configured, Min: 1]
-                BAT_POLLINATE_CHANCE = GameRuleBuilder.forInteger(BatEcologyConfig.getPollinateChance())
-                                .minValue(1)
-                                .category(GameRuleCategory.MOBS)
-                                .buildAndRegister(Identifier.fromNamespaceAndPath("bat_ecology", "pollinate_chance"));
 
                 // Max Colony Scale: Permille (150 = 1.5x) | [Default: Configured, Min: 100]
                 BAT_MAX_COLONY_SCALE = GameRuleBuilder.forInteger(BatEcologyConfig.getMaxColonyScale())
                                 .minValue(100)
-                                .category(GameRuleCategory.MOBS)
+                                .category(BAT_ECOLOGY)
                                 .buildAndRegister(Identifier.fromNamespaceAndPath("bat_ecology", "max_colony_scale"));
+
+                // Spawn Multiplier: scalar | [Default: Configured, Min: 1]
+                BAT_SPAWN_MULT = GameRuleBuilder.forInteger(BatEcologyConfig.getSpawnMult())
+                                .minValue(1)
+                                .category(BAT_ECOLOGY)
+                                .buildAndRegister(Identifier.fromNamespaceAndPath("bat_ecology", "spawn_mult"));
         }
 }

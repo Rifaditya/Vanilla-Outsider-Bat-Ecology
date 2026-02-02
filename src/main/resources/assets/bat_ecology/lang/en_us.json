@@ -1,12 +1,13 @@
 {
-    "gamerule.bat_ecology:roost_range": "Bat Roost Range",
-    "gamerule.bat_ecology:roost_range.description": "Maximum distance bats will search for a roosting spot (blocks)",
-    "gamerule.bat_ecology:guano_rate": "Guano Drop Rate",
-    "gamerule.bat_ecology:guano_rate.description": "Chance of guano drop per 1000 ticks (permille)",
-    "gamerule.bat_ecology:swarm_max": "Max Swarm Size",
-    "gamerule.bat_ecology:swarm_max.description": "Maximum number of bats in a swarm group",
-    "gamerule.bat_ecology:pollinate_chance": "Pollination Chance",
-    "gamerule.bat_ecology:pollinate_chance.description": "Pollination success rate when orbiting lanterns (1/x per second)",
-    "gamerule.bat_ecology:max_colony_scale": "Max Colony Scale",
-    "gamerule.bat_ecology:max_colony_scale.description": "Maximum visual scale for large colonies (150 = 1.5x)"
+    "gamerule.category.bat_ecology.main": "Bat Ecology",
+    "gamerule.bat_ecology.roost_range": "Colony Roost Check Range",
+    "gamerule.bat_ecology.roost_range.description": "The maximum distance (in blocks) that bats will search for a valid roosting spot.",
+    "gamerule.bat_ecology.guano_interval": "Guano Drop Interval",
+    "gamerule.bat_ecology.guano_interval.description": "The time interval (in ticks) between guano drops. Default is 200 ticks (10 seconds).",
+    "gamerule.bat_ecology.swarm_max": "Max Swarm Size",
+    "gamerule.bat_ecology.swarm_max.description": "The maximum number of bats allowed in a swarm/colony before natural spawning stops.",
+    "gamerule.bat_ecology.max_colony_scale": "Max Colony Scale",
+    "gamerule.bat_ecology.max_colony_scale.description": "The maximum visual scale for large colonies, expressed in permille (e.g., 150 = 1.5x scale).",
+    "gamerule.bat_ecology.spawn_mult": "Spawn Multiplier",
+    "gamerule.bat_ecology.spawn_mult.description": "A multiplier applied to bat spawning to control population density."
 }

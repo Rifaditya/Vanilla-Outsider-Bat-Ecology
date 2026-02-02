@@ -16,17 +16,24 @@ public class BatRoostGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        // Only run if we are NOT already hanging (Bat entity usually handles hanging
-        // state internally)
-        // We'll need access to Bat specific methods if we want to check setResting()
-        // For now, simple scan logic
-        return true;
+        // Only run if we are NOT already hanging
+        if (mob instanceof net.minecraft.world.entity.ambient.Bat bat && bat.isResting()) {
+            return false;
+        }
+
+        // Leader Only (Concept L22)
+        if (mob instanceof net.minecraft.world.entity.ambient.Bat bat
+                && mob.level() instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+            return net.vanillaoutsider.bat_ecology.swarm.BatSwarmManager.isLeader(bat, serverLevel);
+        }
+
+        return false;
     }
 
     @Override
     public void tick() {
         if (mob.getRandom().nextInt(20) == 0) { // Check more frequently to find roost quickly
-            int range = ((net.minecraft.server.level.ServerLevel)mob.level()).getGameRules()
+            int range = ((net.minecraft.server.level.ServerLevel) mob.level()).getGameRules()
                     .get(net.vanillaoutsider.bat_ecology.config.BatEcologyRules.BAT_ROOST_RANGE);
             // Don't scan the entire range (too laggy). Scan local area.
             int scanRadius = Math.min(range, 8);
@@ -37,16 +44,18 @@ public class BatRoostGoal extends Goal {
                     mob.getRandom().nextInt(scanRadius * 2 + 1) - scanRadius,
                     mob.getRandom().nextInt(scanRadius * 2 + 1) - scanRadius);
 
-            // Check if it's a valid ceiling (Block is solid, block below is air)
-            if (mob.level().getBlockState(randomPos).isSolid() && mob.level().isEmptyBlock(randomPos.below())) {
+            // Check if valid ceiling AND NO SKYLIGHT (Dark/Indoors)
+            // Condition: Solid block above, Air below, No sky access
+            if (mob.level().getBlockState(randomPos).isSolid() &&
+                    mob.level().isEmptyBlock(randomPos.below()) &&
+                    !mob.level().canSeeSky(randomPos.below())) {
+
                 // Fly to the air block BELOW the ceiling
                 BlockPos roostSpot = randomPos.below();
                 mob.getNavigation().moveTo(roostSpot.getX() + 0.5, roostSpot.getY() + 0.5, roostSpot.getZ() + 0.5, 1.0);
 
-                // If we are close enough, set resting?
+                // If we are close enough, set resting
                 if (mob.distanceToSqr(roostSpot.getX() + 0.5, roostSpot.getY() + 0.5, roostSpot.getZ() + 0.5) < 2.0) {
-                    // In vanilla, Bat.setResting(true) triggers the hanging.
-                    // Accessing via mixin or casting if Bat.
                     if (mob instanceof net.minecraft.world.entity.ambient.Bat bat) {
                         bat.setResting(true);
                     }

@@ -1,0 +1,46 @@
+
+> Configure project :
+Fabric Loom: 1.15.3
+
+> Task :compileJava FAILED
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\ai\BatPollinateGoal.java:91: error: cannot find symbol
+        int pollinateChance = serverLevel.getGameRules().get(BatEcologyRules.BAT_POLLINATE_CHANCE);
+                                                                            ^
+  symbol:   variable BAT_POLLINATE_CHANCE
+  location: class BatEcologyRules
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:54: error: cannot find symbol
+                long time = serverLevel.getDayTime() % 24000;
+                                       ^
+  symbol:   method getDayTime()
+  location: variable serverLevel of type ServerLevel
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+2 errors
+
+[Incubating] Problems report is available at: file:///E:/Minecraft%20Project/Vanilla%20Outsider%20Collections/Bat%20Ecology/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  Note: Recompile with -Xlint:deprecation for details.
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\ai\BatPollinateGoal.java:91: error: cannot find symbol
+          int pollinateChance = serverLevel.getGameRules().get(BatEcologyRules.BAT_POLLINATE_CHANCE);
+                                                                              ^
+    symbol:   variable BAT_POLLINATE_CHANCE
+    location: class BatEcologyRules
+  Note: Some input files use or override a deprecated API.
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:54: error: cannot find symbol
+                  long time = serverLevel.getDayTime() % 24000;
+                                         ^
+    symbol:   method getDayTime()
+    location: variable serverLevel of type ServerLevel
+  2 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (powered by Develocity).
+
+BUILD FAILED in 10s
+1 actionable task: 1 executed

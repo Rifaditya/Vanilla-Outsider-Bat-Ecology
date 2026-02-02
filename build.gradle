@@ -12,6 +12,7 @@ base {
 
 repositories {
 	maven { url = "https://maven.fabricmc.net/" }
+	mavenLocal()
 	mavenCentral()
 }
 
@@ -23,7 +24,7 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	implementation files("e:/Minecraft Project/DasikLibrary/build/libs/dasik-library-1.0.2.jar")
+	implementation files("${project.dasik_lib_path}")
 }
 
 processResources {

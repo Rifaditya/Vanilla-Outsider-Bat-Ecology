@@ -1,5 +1,7 @@
 package net.vanillaoutsider.bat_ecology.swarm;
 
+import net.minecraft.core.BlockPos;
+
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.ambient.Bat;
 import net.minecraft.world.phys.AABB;
@@ -97,23 +99,40 @@ public class BatSwarmManager {
         double minDistSq = (BASE_MIN_DIST * spreadMult) * (BASE_MIN_DIST * spreadMult);
         double maxDistSq = (BASE_MAX_DIST * spreadMult) * (BASE_MAX_DIST * spreadMult);
 
-        // Only follow if not too close (cohesion) but not too far (separation)
-        if (distSq > minDistSq && distSq < maxDistSq) {
-            Vec3 movement = follower.getDeltaMovement();
+        Vec3 movement = follower.getDeltaMovement();
+        boolean changed = false;
 
+        // 1. Follow Leader (Cohesion/Separation)
+        if (distSq > minDistSq && distSq < maxDistSq) {
             // Gentler steering for larger colonies to prevent chaos
             double strength = 0.05 / spreadMult;
-            Vec3 newMovement = movement.add(
-                    dx * strength,
-                    dy * strength,
-                    dz * strength);
+            movement = movement.add(dx * strength, dy * strength, dz * strength);
+            changed = true;
+        }
 
-            // Clamp velocity
-            if (newMovement.lengthSqr() > 0.5 * 0.5) {
-                newMovement = newMovement.normalize().scale(0.5);
+        // 2. Floor Avoidance (Soft Minimum Height)
+        // Check 5 blocks down
+        BlockPos pos = follower.blockPosition();
+        boolean closeToGround = false;
+        for (int i = 1; i <= 5; i++) {
+            if (!follower.level().isEmptyBlock(pos.below(i))) {
+                closeToGround = true;
+                break;
             }
+        }
 
-            follower.setDeltaMovement(newMovement);
+        if (closeToGround) {
+            // Push up
+            movement = movement.add(0.0, 0.08, 0.0);
+            changed = true;
+        }
+
+        if (changed) {
+            // Clamp velocity
+            if (movement.lengthSqr() > 0.5 * 0.5) {
+                movement = movement.normalize().scale(0.5);
+            }
+            follower.setDeltaMovement(movement);
         }
     }
 

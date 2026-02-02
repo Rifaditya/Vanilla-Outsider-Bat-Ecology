@@ -34,7 +34,14 @@ public class BatGuanoEvent implements SocialEvent {
 
     @Override
     public void onStart(TickContext context) {
-        tickCounter = 0;
+        if (context.entity().dasik$asEntity() instanceof Bat bat) {
+            // Stagger based on UUID to prevent global sync
+            // Default 200 checks if rule missing, actual rule read in tick()
+            int stagger = Math.abs(bat.getUUID().hashCode()) % 200;
+            tickCounter = stagger;
+        } else {
+            tickCounter = 0;
+        }
     }
 
     @Override
@@ -43,17 +50,25 @@ public class BatGuanoEvent implements SocialEvent {
 
         if (context.entity().dasik$asEntity() instanceof Bat bat && !bat.level().isClientSide()) {
             if (bat.level() instanceof ServerLevel serverLevel) {
-                int guanoRate = serverLevel.getGameRules().get(BatEcologyRules.BAT_GUANO_RATE);
-                int threshold = guanoRate > 0 ? (1000 / guanoRate) : 20000; // Logic from Mixin
+                // Feature 4 (Guano): Nightly Cycle (Zenith Protocol 1.4.0)
+                long time = serverLevel.getOverworldClockTime() % 24000;
+                boolean isNight = time >= 13000 && time < 23000;
 
-                if (tickCounter >= threshold) {
+                if (!isNight) {
+                    return false; // Only drop guano at night
+                }
+
+                int interval = serverLevel.getGameRules().get(BatEcologyRules.BAT_GUANO_INTERVAL);
+
+                if (tickCounter >= interval) {
                     tickCounter = 0;
-                    // Find block below and apply bonemeal effect (Concept L52)
+                    // Find block below and apply bonemeal effect
                     net.minecraft.core.BlockPos below = bat.blockPosition().below();
                     if (serverLevel.getBlockState(below).isSolid()) {
-                        serverLevel.levelEvent(2005, below, 0);
-                        // Also spawn actual particles at the bat
-                        serverLevel.sendParticles(ParticleTypes.COMPOSTER, bat.getX(), bat.getY(), bat.getZ(), 5, 0.2,
+                        serverLevel.levelEvent(2005, below, 0); // Bonemeal sound/particles
+                        // Visual feedback: Happy Villager particles (Green sparkles)
+                        serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER, bat.getX(), bat.getY(), bat.getZ(), 5,
+                                0.2,
                                 0.2, 0.2, 0.0);
                     }
                 }

@@ -20,10 +20,10 @@ public class BatEcologyConfig {
 
     // Default Values
     public int roostRange = 32;
-    public int guanoRate = 50; // 5.0%
+    public int guanoInterval = 200; // Ticks (10 seconds)
     public int swarmMax = 10;
-    public int pollinateChance = 100; // 1%
     public int maxColonyScale = 150; // 1.5x (permille)
+    public int spawnMult = 1;
 
     private static BatEcologyConfig INSTANCE = new BatEcologyConfig();
 
@@ -55,19 +55,19 @@ public class BatEcologyConfig {
         return INSTANCE.roostRange;
     }
 
-    public static int getGuanoRate() {
-        return INSTANCE.guanoRate;
+    public static int getGuanoInterval() {
+        return INSTANCE.guanoInterval;
     }
 
     public static int getSwarmMax() {
         return INSTANCE.swarmMax;
     }
 
-    public static int getPollinateChance() {
-        return INSTANCE.pollinateChance;
-    }
-
     public static int getMaxColonyScale() {
         return INSTANCE.maxColonyScale;
+    }
+
+    public static int getSpawnMult() {
+        return INSTANCE.spawnMult;
     }
 }

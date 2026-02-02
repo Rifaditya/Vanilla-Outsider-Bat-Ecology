@@ -17,41 +17,38 @@
     - **Behavior Tracks:**
         - **Mood (High Priority):** Roosting (Day), Hunting (Night), Swaming (Lantern nearby).
         - **Ambient (Low Priority):** Social Squeaks, Guano Drops.
+        - **Mood (High Priority):** Roosting (Day), Hunting (Night), Orbiting (Lantern nearby).
+        - **Ambient (Low Priority)::** Social Squeaks, Guano Drops.
     - **Leader-Follower:**
         - The Hive Mind lazily elects a "Leader" for each chunk/group.
         - **Optimization:** Only the **Leader** runs expensive logic (Lantern scanning, Crop searching). Followers just boid-flock to the Leader.
 
 2. **Behavior Changes:**
-    - **Daytime (Roosting):** Bats seek dark, solid ceilings. Logic checks `World.isDay()` and `SkyLight`.
+    - **Daytime (Roosting):** Bats seek dark, solid ceilings. Logic checks `World.isDay()` and `!canSeeSky()`.
+        - **Dynamic Home:** Roost spots are not permanent; bats pick any valid spot nearby.
+        - **Condition:** Must not have skylight (indoors/caves).
     - **Nighttime (Hunting):**
-        - **Patrol Mode:** If no Lanterns, Leader orbits home range (Radius: `gamerule bd_bat_roost_range`, default 64).
-        - **Circuit Mode:** If Lanterns exist, Leader plots path between them.
-    - **Mode B: Lantern Present (Circuit Mode)**
+        - **Exit Hiding:** Bats actively seek areas with skylight or open air to leave their roosts.
+        - **Patrol Mode:** If no Lanterns, Leader orbits home range (Radius: `bd_bat_roost_range`).
+        - **Lantern Orbit:** If Lanterns (tagged `minecraft:lanterns` or modded) exist, Leader plots path to orbit them.
+    - **Mode B: Lantern Present (Orbit Mode)**
         - **Trigger:** When the Leader arrives at a Lantern.
-        - **Orbiting:** The Leader (and swarm) will orbit the lantern tightly for **1-2 seconds**.
-        - **Pollination Burst:** During this orbit, the swarm activates a "Pollination Effect."
-            - **Duration:** 2 seconds per Lantern visit.
-            - **Effect:** Applies Bonemeal effect to crops/grass in the area (**9x9 radius** centered on the lantern).
-            - **Height Rule:** The swarm **maintains its 5-block height** while orbiting. The effect is "projected" downwards (like a dusting), so they never fly near the ground or get in the player's way.
-            - **Stacking:** Efficiency increases with more lanterns (more stops = more 2-second bursts across the farm).
+        - **Orbiting:** The Leader (and swarm) will orbit the lantern tightly for **10 seconds**.
+        - **Height Rule:** The swarm **maintains its 5-block height** while orbiting.
+        - **Stacking:** Efficiency increases with more lanterns (more stops = more coverage).
     - **Flight Safety:**
-        - **Height:** Maintains `Y + 5` above ground (Raycast check) to avoid player collision.
+        - **Height:** Preferences `Y + 5` blocks above ground (Soft Minimum). This is not a hard limit; they can fly higher if needed for targets, but will actively push up if below this threshold.
         - **Lava:** Standard `PathNodeType.LAVA` penalty increased to -1.0 (Blocked).
 
-3. **Pollination (The "Dusting" Effect):**
-    - **Trigger:** When Leader reaches a Lantern and orbits.
-    - **Logic (Optimization):**
-        - Runs **ONCE per second** (20 ticks).
-        - Runs **ONLY on Leader**.
-        - Effect: `World.playEvent` (Bonemeal) on random crops in 9x9 area.
-    - **Config:** Chance defined by `gamerule bd_bat_pollinate_chance` (Default 100%).
+3. **Guano (Fertilizer):**
+    - **Logic:** Social track event.
+    - **Trigger**: Every night (`level.isNight()`).
+    - **Interval**: Fixed every **10 seconds** (200 ticks).
+    - **Condition**: No hard limit or probability.
+    - **Effect**: Bonemeal block below AND plays `minecraft:happy_villager` particles.
+    - **Config**: `bd_bat_guano_interval` (int, default 200).
 
-4. **Guano (Fertilizer):**
-    - **Logic:** Ambient track event.
-    - **Rate:** Controlled by `gamerule bd_bat_guano_rate` (Default 2 per 1000 ticks).
-    - **Effect:** Bonemeal block below.
-
-5. **Breeding & Growth:**
+4. **Breeding & Growth:**
     - **Manual Breeding:** Player feeds **Spider Eye** to 2 bats.
         - **Interaction:** Handled via `interactMob` Mixin.
         - **Result:** Spawns Baby Bat.
@@ -63,7 +60,7 @@
         - Manual breeding has no limit (player investment).
         - Auto-spawning ONLY occurs if `ColonySize < gamerule bd_bat_swarm_max` (Default 10).
 
-6. **Colony Scaling (Dynamic):**
+5. **Colony Scaling (Dynamic):**
     - **Visual Growth:** Bats grow larger as colony grows.
         - **Formula:** `scale = baseScale * sqrt(colonySize / 10)`
         - **Cap:** Maximum 1.5x scale.
