@@ -1,35 +1,31 @@
 {
     "schemaVersion": 1,
-    "id": "batecology",
-    "version": "1.0.5",
+    "id": "bat_ecology",
+    "version": "1.3.2",
     "name": "Bat Ecology",
-    "description": "Enhances bats with swarm intelligence, pollination, and ecological roles.",
+    "description": "Enhancing Bat interactions and behaviors with hive mind mechanics.",
     "authors": [
         "Vanilla Outsider"
     ],
     "contact": {
-        "homepage": "https://example.com/",
         "sources": "https://github.com/VanillaOutsider/BatEcology"
     },
     "license": "GPL-3.0-or-later",
-    "icon": "assets/batecology/icon.png",
     "environment": "*",
     "entrypoints": {
         "main": [
-            "com.vanillaoutsider.batecology.BatEcologyMod"
-        ],
-        "client": [
-            "com.vanillaoutsider.batecology.client.BatEcologyClient"
+            "net.vanillaoutsider.bat_ecology.BatEcologyMod"
         ]
     },
     "mixins": [
-        "batecology.mixins.json",
-        "batecology-client.mixins.json"
+        "bat_ecology.mixins.json"
     ],
+    "accessWidener": "bat_ecology.accesswidener",
     "depends": {
         "fabricloader": ">=0.16.9",
         "minecraft": "~26.1-",
         "java": ">=25",
-        "fabric-api": "*"
+        "fabric-api": "*",
+        "dasik-library": ">=1.0.1 <2.0.0"
     }
 }

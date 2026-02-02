@@ -1,0 +1,8 @@
+accessWidener v2 official
+
+# Bat Ecology - Access Widener
+# Required to dynamically modify Mob goal selectors at runtime
+
+# Mob Goal Selector Access
+accessible field net/minecraft/world/entity/Mob goalSelector Lnet/minecraft/world/entity/ai/goal/GoalSelector;
+accessible field net/minecraft/world/entity/Mob targetSelector Lnet/minecraft/world/entity/ai/goal/GoalSelector;

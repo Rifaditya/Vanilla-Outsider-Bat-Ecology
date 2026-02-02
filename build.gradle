@@ -1,5 +1,5 @@
 plugins {
-	id 'net.fabricmc.fabric-loom' version '1.14.7'
+	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 }
 
@@ -11,22 +11,23 @@ base {
 }
 
 repositories {
+	maven { url = "https://maven.fabricmc.net/" }
 	mavenCentral()
-    maven { url "https://maven.fabricmc.net/" }
-    maven { url "https://maven.shedaniel.me/" }
-    maven { url "https://maven.terraformersmc.com/releases/" }
+}
+
+loom {
+	accessWidenerPath = file("src/main/resources/bat_ecology.accesswidener")
 }
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	// mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	implementation files("e:/Minecraft Project/DasikLibrary/build/libs/dasik-library-1.0.2.jar")
 }
 
 processResources {
 	inputs.property "version", project.version
-
 	filesMatching("fabric.mod.json") {
 		expand "version": project.version
 	}
@@ -37,12 +38,9 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(25)
-	}
 	withSourcesJar()
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
+	sourceCompatibility = 25
+	targetCompatibility = 25
 }
 
 jar {
