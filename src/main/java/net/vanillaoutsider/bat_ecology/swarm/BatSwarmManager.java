@@ -48,9 +48,9 @@ public class BatSwarmManager {
         // Dynamic search radius - scales with expected colony size
         AABB searchBox = bat.getBoundingBox().inflate(64.0);
         List<Bat> nearbyBats = level.getEntitiesOfClass(Bat.class, searchBox, b -> {
-            if (!(b instanceof BatExtensions))
+            if (!(b instanceof net.dasik.social.api.breeding.UniversalAgeable))
                 return false;
-            return !((BatExtensions) b).bat_ecology$isBaby();
+            return !((net.dasik.social.api.breeding.UniversalAgeable) b).isUniversalBaby();
         });
 
         // Sort by UUID to deterministically elect leader

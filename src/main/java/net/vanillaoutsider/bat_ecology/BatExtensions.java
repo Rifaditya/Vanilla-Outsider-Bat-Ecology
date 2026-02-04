@@ -1,21 +1,14 @@
 package net.vanillaoutsider.bat_ecology;
 
-import net.dasik.social.core.EntitySocialScheduler;
+import net.dasik.social.api.group.GroupMember;
 import net.dasik.social.api.SocialEntity;
+import net.minecraft.world.entity.ambient.Bat;
 
-public interface BatExtensions extends SocialEntity {
+public interface BatExtensions extends SocialEntity, GroupMember<Bat>, net.dasik.social.api.breeding.UniversalAgeable {
     // dasik$getScheduler is inherited from SocialEntity
 
     // dasik$getSpeciesId inherited
     void bat_ecology$setSocialSpecies(String species);
 
-    void bat_ecology$setInLove(int ticks);
-
-    boolean bat_ecology$isInLove();
-
-    void bat_ecology$setBaby(boolean isBaby);
-
-    boolean bat_ecology$isBaby();
-
-    void bat_ecology$setBreedCooldown(int ticks);
+    // UniversalAgeable methods are now inherited directly
 }

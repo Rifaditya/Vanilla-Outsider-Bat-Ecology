@@ -1,7 +1,7 @@
 {
     "schemaVersion": 1,
     "id": "bat_ecology",
-    "version": "1.5.1",
+    "version": "1.6.1",
     "name": "Bat Ecology",
     "description": "Enhancing Bat interactions and behaviors with hive mind mechanics.",
     "authors": [

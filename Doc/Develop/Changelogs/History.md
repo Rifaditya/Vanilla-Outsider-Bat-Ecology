@@ -1,5 +1,20 @@
 # Bat Ecology History
 
+## [1.6.1] - 2026-02-04
+
+### Fixed
+
+- **Breeding Integration**: Fully refactored `Bat` to implement `UniversalAgeable` logic for robust breeding.
+- **Client Render**: Added `BatRendererMixin` to correctly scale baby bats (50% size).
+- **Code Cleanup**: Removed duplicate methods in `BatExtensions` favoring library inheritance.
+
+## [1.6.0] - 2026-02-04
+
+### Changed
+
+- **API Migrated**: Migrated internal `BatFollowLeaderGoal` to `DasikLibrary`'s `FollowLeaderGoal`.
+- **Core Update**: Updated dependency to `DasikLibrary` 1.3.0.
+
 ## [1.5.1] - 2026-02-03
 
 ### Added

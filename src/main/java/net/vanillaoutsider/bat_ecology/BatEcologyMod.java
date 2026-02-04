@@ -19,7 +19,7 @@ public class BatEcologyMod implements ModInitializer {
                 // Register Universal Breeding for Bats (Protocol 12 Update)
                 net.dasik.social.api.breeding.UniversalBreedingRegistry.register(
                                 net.minecraft.world.entity.EntityType.BAT,
-                                net.minecraft.world.item.Items.GLOW_BERRIES,
+                                net.minecraft.world.item.Items.SPIDER_EYE,
                                 6000 // 5 minutes cooldown
                 );
 

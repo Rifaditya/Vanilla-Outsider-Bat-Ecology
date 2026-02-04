@@ -10,11 +10,20 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.vanillaoutsider.bat_ecology.config.BatEcologyConfig;
+import net.vanillaoutsider.bat_ecology.BatExtensions;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.ItemStack;
+import net.dasik.social.api.breeding.UniversalBreedingRegistry;
+import net.dasik.social.api.breeding.UniversalAgeable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Implements;
+import org.spongepowered.asm.mixin.Interface;
 
 @Mixin(Bat.class)
-public abstract class BatMixin extends net.minecraft.world.entity.ambient.AmbientCreature {
+public abstract class BatMixin extends net.minecraft.world.entity.ambient.AmbientCreature implements BatExtensions {
 
     protected BatMixin(EntityType<? extends net.minecraft.world.entity.ambient.AmbientCreature> entityType,
             net.minecraft.world.level.Level level) {
@@ -25,6 +34,51 @@ public abstract class BatMixin extends net.minecraft.world.entity.ambient.Ambien
     private void dasik$addBreedingGoal(EntityType<? extends Bat> type, net.minecraft.world.level.Level level,
             org.spongepowered.asm.mixin.injection.callback.CallbackInfo ci) {
         this.goalSelector.addGoal(1, new net.dasik.social.api.breeding.UniversalBreedGoal(this, 1.0));
+        // Leader following goal - priority 2
+        // Cast to Mob (Bat extends Mob)
+        this.goalSelector.addGoal(5,
+                new net.dasik.social.ai.goal.FollowLeaderGoal((net.minecraft.world.entity.Mob) (Object) this));
+    }
+
+    // --- GroupMember Implementation ---
+    private Bat bat_ecology$leader;
+
+    @Override
+    public Bat getLeader() {
+        return this.bat_ecology$leader;
+    }
+
+    @Override
+    public void setLeader(Bat leader) {
+        this.bat_ecology$leader = leader;
+    }
+
+    @Override
+    public boolean hasLeader() {
+        return this.bat_ecology$leader != null && this.bat_ecology$leader.isAlive();
+    }
+
+    @Override
+    public int getGroupSize() {
+        // Simple delegate to manager or local count
+        // For efficiency, maybe just return 0 or implement manager call if needed by
+        // Boids
+        // The boid strategy usually takes the group size, but we can perhaps pass it
+        // dynamically.
+        // Actually, Strategy.AERIAL uses groupSize to scale spread.
+        // We can wire this to BatSwarmManager (legacy) or new GroupManager logic.
+        // For now, let's use the new GroupManager which adapts the logic.
+        return net.dasik.social.core.group.GroupManager.countGroupSize((Bat) (Object) this, Bat.class, 64.0);
+    }
+
+    @Override
+    public net.dasik.social.api.group.strategy.FlockingStrategy getFlockingStrategy() {
+        return net.dasik.social.api.group.strategy.Strategies.AERIAL;
+    }
+
+    @Override
+    public net.dasik.social.api.group.GroupParameters getGroupParameters() {
+        return net.dasik.social.api.group.GroupParameters.DEFAULT_AERIAL;
     }
 
     /**
@@ -76,5 +130,44 @@ public abstract class BatMixin extends net.minecraft.world.entity.ambient.Ambien
                         : Bat.checkMobSpawnRules(type, level, spawnReason, pos, random);
             }
         }
+    }
+
+    @Override
+    protected InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemStack = player.getItemInHand(hand);
+        if (UniversalBreedingRegistry.isFood(this.getType(), itemStack)) {
+            if (!this.level().isClientSide()) {
+                if (this instanceof UniversalAgeable ageable) {
+                    if (!ageable.isUniversalBaby() && !ageable.isInLove()) {
+                        int cooldown = UniversalBreedingRegistry.getCooldown(this.getType());
+                        if (!player.getAbilities().instabuild) {
+                            itemStack.shrink(1);
+                        }
+                        ageable.setInLove(cooldown);
+                        this.level().broadcastEntityEvent(this, (byte) 18);
+                        return InteractionResult.SUCCESS;
+                    } else if (ageable.isUniversalBaby()) {
+                        // Grow baby
+                        if (!player.getAbilities().instabuild) {
+                            itemStack.shrink(1);
+                        }
+                        int currentAge = ageable.getUniversalAge();
+                        int growth = (int) ((float) (-currentAge) / 20.0F);
+                        ageable.setUniversalAge(currentAge + growth);
+                        this.level().addParticle(net.minecraft.core.particles.ParticleTypes.HAPPY_VILLAGER,
+                                this.getRandomX(1.0), this.getRandomY() + 0.5, this.getRandomZ(1.0), 0.0, 0.0, 0.0);
+                        return InteractionResult.SUCCESS;
+                    }
+                }
+            } else {
+                // Client side - just return success for food to trigger arm swing/sound
+                // prediction if needed
+                // But generally returning consume is better
+                if (this instanceof UniversalAgeable ageable && (!ageable.isInLove() || ageable.isUniversalBaby())) {
+                    return InteractionResult.CONSUME;
+                }
+            }
+        }
+        return super.mobInteract(player, hand);
     }
 }
