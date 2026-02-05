@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.6.2] - 2026-02-05
+
+### Assets
+
+- **Icon**: Updated mod icon to new 512x512 High-Res design.
+
 ## [1.6.1] - 2026-02-04
 
 ### Fixed
