@@ -4,6 +4,10 @@
 
 - **Bug Fix**: Rewrote ambient flight goal to respect aerial navigation constraints, fixing the ground movement bug.
 
+## v1.8.8 - 2026-02-13
+
+- **Bug Fix**: Enabled `hoversInPlace` in `FlyingMoveControl` to prevent bats from falling when idle.
+
 ## v1.8.6 - 2026-02-13
 
 - **Core Migration**: Implemented `StandardAerialNavigation`. Logic for pathing is now centralized in DasikLibrary.

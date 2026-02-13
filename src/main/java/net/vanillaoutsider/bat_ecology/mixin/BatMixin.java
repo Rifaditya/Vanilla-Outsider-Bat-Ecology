@@ -32,7 +32,7 @@ public abstract class BatMixin extends net.minecraft.world.entity.ambient.Ambien
     protected BatMixin(EntityType<? extends net.minecraft.world.entity.ambient.AmbientCreature> entityType,
             net.minecraft.world.level.Level level) {
         super(entityType, level);
-        this.moveControl = new net.minecraft.world.entity.ai.control.FlyingMoveControl(this, 20, false);
+        this.moveControl = new net.minecraft.world.entity.ai.control.FlyingMoveControl(this, 20, true);
     }
 
     @Override
