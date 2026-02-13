@@ -72,7 +72,6 @@ The mod works out of the box with zero setup.
 1. Install **[Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)**.
 2. Install **[Dasik Library](https://www.curseforge.com/minecraft/mc-mods/dasik-library)**.
 3. Download `Bat-Ecology.jar` and place it in your `mods` folder.
-3. Download `Bat-Ecology.jar` and place it in your `mods` folder.
 
 ---
 

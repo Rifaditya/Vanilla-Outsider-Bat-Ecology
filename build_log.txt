@@ -1,0 +1,61 @@
+﻿Starting a Gradle Daemon, 2 incompatible and 3 stopped Daemons could not be reused, use --status for details
+
+> Configure project :
+Fabric Loom: 1.15.3
+
+> Task :compileJava
+./gradlew : Note: 
+E:\Minecraft 
+Project\Vanilla 
+Outsider 
+Collections\Bat Ecolog
+y\src\main\java\net\va
+nillaoutsider\bat_ecol
+ogy\ai\BatRoostGoal.ja
+va uses or overrides 
+a deprecated API.
+At line:1 char:1
++ ./gradlew build 
+2>&1 | Out-File 
+-FilePath 
+build_log.txt 
+-Encoding utf ...
++ ~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (Note: E:\M   
+ inecr...deprecate    
+d API.:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+Note: Recompile with 
+-Xlint:deprecation 
+for details.
+
+> Task :processResources
+> Task :classes
+> Task :processIncludeJars UP-TO-DATE
+> Task :sourcesJar
+> Task :compileTestJava NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :test NO-SOURCE
+> Task :validateAccessWidener UP-TO-DATE
+> Task :check UP-TO-DATE
+> Task :jar
+> Task :assemble
+> Task :build
+
+[Incubating] Problems report is available at: file:///E:/Minecraft%20Project/Vanilla%20Outsider%20Collections/Bat%20Ecology/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.2.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 10s
+6 actionable tasks: 4 executed, 2 up-to-date

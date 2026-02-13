@@ -8,9 +8,15 @@ import net.minecraft.world.entity.ambient.Bat;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 
+import java.util.WeakHashMap;
+
 public class BatGuanoEvent implements SocialEvent {
 
-    private int tickCounter;
+    // Fix Shared State: Key is SocialEntity, Value is the tickCounter for that
+    // specific entity.
+    // WeakHashMap automatically cleans up entries when entities are garbage
+    // collected.
+    private final WeakHashMap<SocialEntity, Integer> entityCounters = new WeakHashMap<>();
 
     @Override
     public String getId() {
@@ -36,40 +42,58 @@ public class BatGuanoEvent implements SocialEvent {
     public void onStart(TickContext context) {
         if (context.entity().dasik$asEntity() instanceof Bat bat) {
             // Stagger based on UUID to prevent global sync
-            // Default 200 checks if rule missing, actual rule read in tick()
             int stagger = Math.abs(bat.getUUID().hashCode()) % 200;
-            tickCounter = stagger;
+            entityCounters.put(context.entity(), stagger);
         } else {
-            tickCounter = 0;
+            entityCounters.put(context.entity(), 0);
         }
     }
 
     @Override
     public boolean tick(TickContext context) {
+        SocialEntity socialEntity = context.entity();
+        int tickCounter = entityCounters.getOrDefault(socialEntity, 0);
         tickCounter++;
+        entityCounters.put(socialEntity, tickCounter);
 
-        if (context.entity().dasik$asEntity() instanceof Bat bat && !bat.level().isClientSide()) {
+        if (socialEntity.dasik$asEntity() instanceof Bat bat && !bat.level().isClientSide()) {
             if (bat.level() instanceof ServerLevel serverLevel) {
-                // Feature 4 (Guano): Nightly Cycle (Zenith Protocol 1.4.0)
+                // Feature 4 (Guano): Nightly Cycle
                 long time = serverLevel.getOverworldClockTime() % 24000;
                 boolean isNight = time >= 13000 && time < 23000;
 
-                if (!isNight) {
-                    return false; // Only drop guano at night
-                }
+                if (isNight) {
+                    int interval = serverLevel.getGameRules().get(BatEcologyRules.BAT_GUANO_INTERVAL);
 
-                int interval = serverLevel.getGameRules().get(BatEcologyRules.BAT_GUANO_INTERVAL);
+                    if (tickCounter >= interval) {
+                        entityCounters.put(socialEntity, 0);
 
-                if (tickCounter >= interval) {
-                    tickCounter = 0;
-                    // Find block below and apply bonemeal effect
-                    net.minecraft.core.BlockPos below = bat.blockPosition().below();
-                    if (serverLevel.getBlockState(below).isSolid()) {
-                        serverLevel.levelEvent(2005, below, 0); // Bonemeal sound/particles
-                        // Visual feedback: Happy Villager particles (Green sparkles)
-                        serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER, bat.getX(), bat.getY(), bat.getZ(), 5,
-                                0.2,
-                                0.2, 0.2, 0.0);
+                        // Visual particles trail and Raycast
+                        net.minecraft.core.BlockPos.MutableBlockPos cursor = bat.blockPosition().mutable();
+                        boolean hitGround = false;
+
+                        for (int i = 0; i < 20; i++) {
+                            if (!serverLevel.getBlockState(cursor).isAir()) {
+                                hitGround = true;
+                                break;
+                            }
+                            // Visual trail
+                            if (i % 2 == 0) {
+                                serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER,
+                                        cursor.getX() + 0.5, cursor.getY() + 0.5, cursor.getZ() + 0.5,
+                                        1, 0.1, 0.1, 0.1, 0.0);
+                            }
+                            cursor.move(0, -1, 0);
+                        }
+
+                        if (hitGround) {
+                            net.minecraft.core.BlockPos ground = cursor.immutable();
+                            net.minecraft.world.item.ItemStack boneMeal = new net.minecraft.world.item.ItemStack(
+                                    net.minecraft.world.item.Items.BONE_MEAL);
+                            if (net.minecraft.world.item.BoneMealItem.growCrop(boneMeal, serverLevel, ground)) {
+                                serverLevel.levelEvent(2005, ground, 0); // Bonemeal sound/particles
+                            }
+                        }
                     }
                 }
             }
@@ -79,6 +103,6 @@ public class BatGuanoEvent implements SocialEvent {
 
     @Override
     public void onEnd(SocialEntity entity, EndReason reason) {
-        // Cleanup
+        entityCounters.remove(entity);
     }
 }

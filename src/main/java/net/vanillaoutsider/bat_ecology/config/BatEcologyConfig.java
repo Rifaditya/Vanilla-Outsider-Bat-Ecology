@@ -3,6 +3,8 @@ package net.vanillaoutsider.bat_ecology.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,6 +17,7 @@ import java.nio.file.Path;
  */
 public class BatEcologyConfig {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger("bat_ecology");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("bat_ecology.json");
 
@@ -24,6 +27,7 @@ public class BatEcologyConfig {
     public int swarmMax = 10;
     public int maxColonyScale = 150; // 1.5x (permille)
     public int spawnMult = 1;
+    public int pollinateChance = 100; // 1 in 100 chance
 
     private static BatEcologyConfig INSTANCE = new BatEcologyConfig();
 
@@ -33,8 +37,7 @@ public class BatEcologyConfig {
                 String json = Files.readString(CONFIG_PATH);
                 INSTANCE = GSON.fromJson(json, BatEcologyConfig.class);
             } catch (IOException e) {
-                e.printStackTrace();
-                // Fallback to defaults if load fails
+                LOGGER.error("Failed to load config, using defaults", e);
             }
         } else {
             save(); // Generate template if non-existent
@@ -46,7 +49,7 @@ public class BatEcologyConfig {
             String json = GSON.toJson(INSTANCE);
             Files.writeString(CONFIG_PATH, json);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Failed to save config", e);
         }
     }
 
@@ -69,5 +72,9 @@ public class BatEcologyConfig {
 
     public static int getSpawnMult() {
         return INSTANCE.spawnMult;
+    }
+
+    public static int getPollinateChance() {
+        return INSTANCE.pollinateChance;
     }
 }

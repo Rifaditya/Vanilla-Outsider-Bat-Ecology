@@ -16,6 +16,7 @@ public class BatEcologyRules {
         public static GameRule<Integer> BAT_SWARM_MAX;
         public static GameRule<Integer> BAT_MAX_COLONY_SCALE;
         public static GameRule<Integer> BAT_SPAWN_MULT;
+        public static GameRule<Integer> BAT_POLLINATE_CHANCE;
 
         // Custom Category
         public static final GameRuleCategory BAT_ECOLOGY = GameRuleCategory
@@ -54,5 +55,11 @@ public class BatEcologyRules {
                                 .minValue(1)
                                 .category(BAT_ECOLOGY)
                                 .buildAndRegister(Identifier.fromNamespaceAndPath("bat_ecology", "spawn_mult"));
+
+                // Pollinate Chance: 1 in X ticks | [Default: Configured, Min: 1]
+                BAT_POLLINATE_CHANCE = GameRuleBuilder.forInteger(BatEcologyConfig.getPollinateChance())
+                                .minValue(1)
+                                .category(BAT_ECOLOGY)
+                                .buildAndRegister(Identifier.fromNamespaceAndPath("bat_ecology", "pollinate_chance"));
         }
 }

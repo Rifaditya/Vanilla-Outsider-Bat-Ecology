@@ -6,9 +6,5 @@ import net.minecraft.world.entity.ambient.Bat;
 
 public interface BatExtensions extends SocialEntity, GroupMember<Bat>, net.dasik.social.api.breeding.UniversalAgeable {
     // dasik$getScheduler is inherited from SocialEntity
-
-    // dasik$getSpeciesId inherited
-    void bat_ecology$setSocialSpecies(String species);
-
-    // UniversalAgeable methods are now inherited directly
+    // dasik$getSpeciesId, UniversalAgeable methods are inherited
 }
