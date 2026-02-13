@@ -1,5 +1,9 @@
 # Release History
 
+## v1.8.6 - 2026-02-13
+
+- **Core Migration**: Implemented `StandardAerialNavigation`. Logic for pathing is now centralized in DasikLibrary.
+
 ## v1.8.5 - 2026-02-13
 
 - **Bug Fix**: Fixed "ground walking" behavior. Bats can now fly vertically and pathfind through air correctly.

@@ -16,6 +16,7 @@ import net.vanillaoutsider.bat_ecology.ai.BatAmbientFlyGoal;
 import net.vanillaoutsider.bat_ecology.ai.BatRoostGoal;
 import net.dasik.social.api.breeding.UniversalBreedGoal;
 import net.dasik.social.api.breeding.UniversalTemptGoal;
+import net.dasik.social.ai.navigation.StandardAerialNavigation;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.level.Level;
@@ -36,15 +37,10 @@ public abstract class BatMixin extends net.minecraft.world.entity.ambient.Ambien
 
     @Override
     protected PathNavigation createNavigation(Level level) {
-        FlyingPathNavigation nav = new FlyingPathNavigation(this, level);
-        nav.setCanOpenDoors(false);
-        nav.setCanFloat(true);
-        // Treat air and ground equally for pathfinding (prevents preferring ground)
-        this.setPathfindingMalus(PathType.WALKABLE, 4.0F);
-        this.setPathfindingMalus(PathType.WATER_BORDER, 0.0F);
-        this.setPathfindingMalus(PathType.DANGER_FIRE, -1.0F);
-        this.setPathfindingMalus(PathType.DAMAGE_FIRE, -1.0F);
-        return nav;
+        // Use the Standard Aerial Navigation from DasikLibrary
+        // This handles all the pathing logic (Air=0.0F, Ground=4.0F penalty, hazardous
+        // blocks blocked)
+        return new StandardAerialNavigation(this, level);
     }
 
     /**

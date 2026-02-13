@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.8.6
+
+- **Refactor**: Switched pathfinding logic to use `StandardAerialNavigation` from `DasikLibrary`. This ensures consistent "air-only" flight behavior.
+
 ## v1.8.5
 
 - **Fixed Pathfinding**: Bats now fly properly instead of crawling on the ground.
