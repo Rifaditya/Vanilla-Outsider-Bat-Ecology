@@ -1,5 +1,11 @@
 # Release History
 
+## v1.8.5 - 2026-02-13
+
+- **Bug Fix**: Fixed "ground walking" behavior. Bats can now fly vertically and pathfind through air correctly.
+  - Removed aggressive vanilla Y-velocity decay.
+  - Updated `FlyingPathNavigation` configuration.
+
 ## v1.8.4 - 2026-02-13
 
 - **Bug Fix**: Fixed issue where Bats would never wake up from resting state (conditional AI suppression).

@@ -21,6 +21,8 @@ import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.Redirect;
+import net.minecraft.world.level.pathfinder.PathType;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Bat.class)
@@ -37,7 +39,27 @@ public abstract class BatMixin extends net.minecraft.world.entity.ambient.Ambien
         FlyingPathNavigation nav = new FlyingPathNavigation(this, level);
         nav.setCanOpenDoors(false);
         nav.setCanFloat(true);
+        // Treat air and ground equally for pathfinding (prevents preferring ground)
+        this.setPathfindingMalus(PathType.WALKABLE, 4.0F);
+        this.setPathfindingMalus(PathType.WATER_BORDER, 0.0F);
+        this.setPathfindingMalus(PathType.DANGER_FIRE, -1.0F);
+        this.setPathfindingMalus(PathType.DAMAGE_FIRE, -1.0F);
         return nav;
+    }
+
+    /**
+     * Redirect the heavy vertical drag in Bat.tick() which multiplies Y velocity by
+     * 0.6.
+     * We limit it to standard air friction (0.91) or no change, allowing upwards
+     * flight.
+     */
+    @Redirect(method = "tick", at = @org.spongepowered.asm.mixin.injection.At(value = "INVOKE", target = "Lnet/minecraft/world/phys/Vec3;multiply(DDD)Lnet/minecraft/world/phys/Vec3;"))
+    private net.minecraft.world.phys.Vec3 batEcology$removeVerticalDrag(net.minecraft.world.phys.Vec3 instance,
+            double x, double y, double z) {
+        // Original was multiply(1.0, 0.6, 1.0) -> heavily penalized Y
+        // We replace it with identity (no extra drag beyond standard physics)
+        // or just let FlyingMoveControl handle it.
+        return instance;
     }
 
     @org.spongepowered.asm.mixin.injection.Inject(method = "<init>", at = @org.spongepowered.asm.mixin.injection.At("RETURN"))

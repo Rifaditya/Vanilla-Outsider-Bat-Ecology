@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.8.5
+
+- **Fixed Pathfinding**: Bats now fly properly instead of crawling on the ground.
+  - Removed vanilla Y-velocity drag (0.6 multiplier) that prevented upward flight.
+  - Configured pathfinder to treat air and ground equally.
+
 ## v1.8.4
 
 - **Fixed Flight**: Bats can now wake up from resting state (vanilla AI suppression is now conditional).
