@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.8.7
+
+- **Fix**: `BatAmbientFlyGoal` now uses correct pathfinding logic via `UniversalRandomPos`, eliminating "ground walking" behavior and enforcing flight.
+
 ## v1.8.6
 
 - **Refactor**: Switched pathfinding logic to use `StandardAerialNavigation` from `DasikLibrary`. This ensures consistent "air-only" flight behavior.

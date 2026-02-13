@@ -1,61 +1,732 @@
-﻿Starting a Gradle Daemon, 2 incompatible and 3 stopped Daemons could not be reused, use --status for details
 
 > Configure project :
 Fabric Loom: 1.15.3
 
-> Task :compileJava
-./gradlew : Note: 
-E:\Minecraft 
-Project\Vanilla 
-Outsider 
-Collections\Bat Ecolog
-y\src\main\java\net\va
-nillaoutsider\bat_ecol
-ogy\ai\BatRoostGoal.ja
-va uses or overrides 
-a deprecated API.
-At line:1 char:1
-+ ./gradlew build 
-2>&1 | Out-File 
--FilePath 
-build_log.txt 
--Encoding utf ...
-+ ~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo    
-          : NotSpeci  
-  fied: (Note: E:\M   
- inecr...deprecate    
-d API.:String) []    
-, RemoteException
-    + FullyQualifiedE 
-   rrorId : NativeCo  
-  mmandError
- 
-Note: Recompile with 
--Xlint:deprecation 
-for details.
-
-> Task :processResources
-> Task :classes
-> Task :processIncludeJars UP-TO-DATE
-> Task :sourcesJar
-> Task :compileTestJava NO-SOURCE
-> Task :processTestResources NO-SOURCE
-> Task :testClasses UP-TO-DATE
-> Task :test NO-SOURCE
-> Task :validateAccessWidener UP-TO-DATE
-> Task :check UP-TO-DATE
-> Task :jar
-> Task :assemble
-> Task :build
+> Task :compileJava FAILED
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\ai\BatAmbientFlyGoal.java:3: error: package net.dasik.social.ai.util does not exist
+import net.dasik.social.ai.util.UniversalRandomPos;
+                               ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatExtensions.java:3: error: package net.dasik.social.api.group does not exist
+import net.dasik.social.api.group.GroupMember;
+                                 ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatExtensions.java:4: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.SocialEntity;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatExtensions.java:7: error: cannot find symbol
+public interface BatExtensions extends SocialEntity, GroupMember<Bat>, net.dasik.social.api.breeding.UniversalAgeable {
+                                       ^
+  symbol: class SocialEntity
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatExtensions.java:7: error: cannot find symbol
+public interface BatExtensions extends SocialEntity, GroupMember<Bat>, net.dasik.social.api.breeding.UniversalAgeable {
+                                                     ^
+  symbol: class GroupMember
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatExtensions.java:7: error: package net.dasik.social.api.breeding does not exist
+public interface BatExtensions extends SocialEntity, GroupMember<Bat>, net.dasik.social.api.breeding.UniversalAgeable {
+                                                                                                    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:17: error: package net.dasik.social.api.breeding does not exist
+import net.dasik.social.api.breeding.UniversalBreedGoal;
+                                    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:18: error: package net.dasik.social.api.breeding does not exist
+import net.dasik.social.api.breeding.UniversalTemptGoal;
+                                    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:19: error: package net.dasik.social.ai.navigation does not exist
+import net.dasik.social.ai.navigation.StandardAerialNavigation;
+                                     ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:109: error: package net.dasik.social.api.group.strategy does not exist
+    public net.dasik.social.api.group.strategy.FlockingStrategy getFlockingStrategy() {
+                                              ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:114: error: package net.dasik.social.api.group does not exist
+    public net.dasik.social.api.group.GroupParameters getGroupParameters() {
+                                     ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:3: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.SocialEvent;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:4: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.SocialEntity;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:5: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.TickContext;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:13: error: cannot find symbol
+public class BatGuanoEvent implements SocialEvent {
+                                      ^
+  symbol: class SocialEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:19: error: cannot find symbol
+    private final WeakHashMap<SocialEntity, Integer> entityCounters = new WeakHashMap<>();
+                              ^
+  symbol:   class SocialEntity
+  location: class BatGuanoEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:37: error: cannot find symbol
+    public boolean canPreempt(SocialEvent other) {
+                              ^
+  symbol:   class SocialEvent
+  location: class BatGuanoEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:42: error: cannot find symbol
+    public void onStart(TickContext context) {
+                        ^
+  symbol:   class TickContext
+  location: class BatGuanoEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:53: error: cannot find symbol
+    public boolean tick(TickContext context) {
+                        ^
+  symbol:   class TickContext
+  location: class BatGuanoEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:105: error: cannot find symbol
+    public void onEnd(SocialEntity entity, EndReason reason) {
+                      ^
+  symbol:   class SocialEntity
+  location: class BatGuanoEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:105: error: cannot find symbol
+    public void onEnd(SocialEntity entity, EndReason reason) {
+                                           ^
+  symbol:   class EndReason
+  location: class BatGuanoEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:3: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.SocialEvent;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:4: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.SocialEntity;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:5: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.TickContext;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:8: error: cannot find symbol
+public class BatHuntEvent implements SocialEvent {
+                                     ^
+  symbol: class SocialEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:26: error: cannot find symbol
+    public boolean canPreempt(SocialEvent other) {
+                              ^
+  symbol:   class SocialEvent
+  location: class BatHuntEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:33: error: cannot find symbol
+    public void onStart(TickContext context) {
+                        ^
+  symbol:   class TickContext
+  location: class BatHuntEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:41: error: cannot find symbol
+    public boolean tick(TickContext context) {
+                        ^
+  symbol:   class TickContext
+  location: class BatHuntEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:46: error: cannot find symbol
+    public void onEnd(SocialEntity entity, EndReason reason) {
+                      ^
+  symbol:   class SocialEntity
+  location: class BatHuntEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:46: error: cannot find symbol
+    public void onEnd(SocialEntity entity, EndReason reason) {
+                                           ^
+  symbol:   class EndReason
+  location: class BatHuntEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:4: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.TickContext;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:6: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.SocialEntity;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:7: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.SocialEvent;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:9: error: cannot find symbol
+public class SocialForageEvent implements SocialEvent {
+                                          ^
+  symbol: class SocialEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:28: error: cannot find symbol
+    public boolean canPreempt(SocialEvent other) {
+                              ^
+  symbol:   class SocialEvent
+  location: class SocialForageEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:33: error: cannot find symbol
+    public void onStart(TickContext context) {
+                        ^
+  symbol:   class TickContext
+  location: class SocialForageEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:41: error: cannot find symbol
+    public boolean tick(TickContext context) {
+                        ^
+  symbol:   class TickContext
+  location: class SocialForageEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:46: error: cannot find symbol
+    public void onEnd(SocialEntity entity, EndReason reason) {
+                      ^
+  symbol:   class SocialEntity
+  location: class SocialForageEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:46: error: cannot find symbol
+    public void onEnd(SocialEntity entity, EndReason reason) {
+                                           ^
+  symbol:   class EndReason
+  location: class SocialForageEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:4: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.TickContext;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:6: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.SocialEntity;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:7: error: package net.dasik.social.api does not exist
+import net.dasik.social.api.SocialEvent;
+                           ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:9: error: cannot find symbol
+public class SocialRoostEvent implements SocialEvent {
+                                         ^
+  symbol: class SocialEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:28: error: cannot find symbol
+    public boolean canPreempt(SocialEvent other) {
+                              ^
+  symbol:   class SocialEvent
+  location: class SocialRoostEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:33: error: cannot find symbol
+    public void onStart(TickContext context) {
+                        ^
+  symbol:   class TickContext
+  location: class SocialRoostEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:41: error: cannot find symbol
+    public boolean tick(TickContext context) {
+                        ^
+  symbol:   class TickContext
+  location: class SocialRoostEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:46: error: cannot find symbol
+    public void onEnd(SocialEntity entity, EndReason reason) {
+                      ^
+  symbol:   class SocialEntity
+  location: class SocialRoostEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:46: error: cannot find symbol
+    public void onEnd(SocialEntity entity, EndReason reason) {
+                                           ^
+  symbol:   class EndReason
+  location: class SocialRoostEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\ai\BatAmbientFlyGoal.java:51: error: cannot find symbol
+        Vec3 hoverPos = UniversalRandomPos.getHoverPos(
+                        ^
+  symbol:   variable UniversalRandomPos
+  location: class BatAmbientFlyGoal
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatEcologyMod.java:20: error: package net.dasik.social.api.breeding does not exist
+                net.dasik.social.api.breeding.UniversalBreedingRegistry.register(
+                                             ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatEcologyMod.java:27: error: package net.dasik.social.api does not exist
+                net.dasik.social.api.SocialEventRegistry.register(
+                                    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatEcologyMod.java:29: error: package net.dasik.social.api does not exist
+                net.dasik.social.api.SocialEventRegistry.register(
+                                    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatEcologyMod.java:31: error: package net.dasik.social.api does not exist
+                net.dasik.social.api.SocialEventRegistry.register(
+                                    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatEcologyMod.java:49: error: package net.dasik.social.core does not exist
+                        net.dasik.social.core.GlobalSocialSystem.pulse(level);
+                                             ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:43: error: cannot find symbol
+        return new StandardAerialNavigation(this, level);
+                   ^
+  symbol:   class StandardAerialNavigation
+  location: class BatMixin
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:64: error: cannot find symbol
+        this.goalSelector.addGoal(1, new UniversalBreedGoal(this, 1.0));
+                                         ^
+  symbol:   class UniversalBreedGoal
+  location: class BatMixin
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:65: error: cannot find symbol
+        this.goalSelector.addGoal(2, new UniversalTemptGoal(this, 1.0));
+                                         ^
+  symbol:   class UniversalTemptGoal
+  location: class BatMixin
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:67: error: package net.dasik.social.ai.goal does not exist
+                new net.dasik.social.ai.goal.FollowLeaderGoal((net.minecraft.world.entity.Mob) (Object) this));
+                                            ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:88: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:93: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:98: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:103: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:105: error: package net.dasik.social.core.group does not exist
+        return net.dasik.social.core.group.GroupManager.countGroupSize((Bat) (Object) this, Bat.class, 64.0);
+                                          ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:108: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:110: error: package net.dasik.social.api.group.strategy does not exist
+        return net.dasik.social.api.group.strategy.Strategies.AERIAL;
+                                                  ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:113: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:115: error: package net.dasik.social.api.group does not exist
+        return net.dasik.social.api.group.GroupParameters.DEFAULT_AERIAL;
+                                         ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:118: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:21: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:26: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:31: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:36: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:41: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:52: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:54: error: cannot find symbol
+        SocialEntity socialEntity = context.entity();
+        ^
+  symbol:   class SocialEntity
+  location: class BatGuanoEvent
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:104: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:10: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:15: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:20: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:25: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:32: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:40: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:45: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:12: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:17: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:22: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:27: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:32: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:40: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:45: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:12: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:17: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:22: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:27: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:32: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:40: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:45: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\swarm\BatSwarmManager.java:51: error: package net.dasik.social.api.breeding does not exist
+            if (!(b instanceof net.dasik.social.api.breeding.UniversalAgeable))
+                                                            ^
+E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\swarm\BatSwarmManager.java:53: error: package net.dasik.social.api.breeding does not exist
+            return !((net.dasik.social.api.breeding.UniversalAgeable) b).isUniversalBaby();
+                                                   ^
+99 errors
 
 [Incubating] Problems report is available at: file:///E:/Minecraft%20Project/Vanilla%20Outsider%20Collections/Bat%20Ecology/build/reports/problems/problems-report.html
 
-Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+FAILURE: Build failed with an exception.
 
-You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler output below.
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:19: error: cannot find symbol
+      private final WeakHashMap<SocialEntity, Integer> entityCounters = new WeakHashMap<>();
+                                ^
+    symbol:   class SocialEntity
+    location: class BatGuanoEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:37: error: cannot find symbol
+      public boolean canPreempt(SocialEvent other) {
+                                ^
+    symbol:   class SocialEvent
+    location: class BatGuanoEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:42: error: cannot find symbol
+      public void onStart(TickContext context) {
+                          ^
+    symbol:   class TickContext
+    location: class BatGuanoEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:53: error: cannot find symbol
+      public boolean tick(TickContext context) {
+                          ^
+    symbol:   class TickContext
+    location: class BatGuanoEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:105: error: cannot find symbol
+      public void onEnd(SocialEntity entity, EndReason reason) {
+                        ^
+    symbol:   class SocialEntity
+    location: class BatGuanoEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:105: error: cannot find symbol
+      public void onEnd(SocialEntity entity, EndReason reason) {
+                                             ^
+    symbol:   class EndReason
+    location: class BatGuanoEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:26: error: cannot find symbol
+      public boolean canPreempt(SocialEvent other) {
+                                ^
+    symbol:   class SocialEvent
+    location: class BatHuntEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:33: error: cannot find symbol
+      public void onStart(TickContext context) {
+                          ^
+    symbol:   class TickContext
+    location: class BatHuntEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:41: error: cannot find symbol
+      public boolean tick(TickContext context) {
+                          ^
+    symbol:   class TickContext
+    location: class BatHuntEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:46: error: cannot find symbol
+      public void onEnd(SocialEntity entity, EndReason reason) {
+                        ^
+    symbol:   class SocialEntity
+    location: class BatHuntEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:46: error: cannot find symbol
+      public void onEnd(SocialEntity entity, EndReason reason) {
+                                             ^
+    symbol:   class EndReason
+    location: class BatHuntEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:28: error: cannot find symbol
+      public boolean canPreempt(SocialEvent other) {
+                                ^
+    symbol:   class SocialEvent
+    location: class SocialForageEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:33: error: cannot find symbol
+      public void onStart(TickContext context) {
+                          ^
+    symbol:   class TickContext
+    location: class SocialForageEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:41: error: cannot find symbol
+      public boolean tick(TickContext context) {
+                          ^
+    symbol:   class TickContext
+    location: class SocialForageEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:46: error: cannot find symbol
+      public void onEnd(SocialEntity entity, EndReason reason) {
+                        ^
+    symbol:   class SocialEntity
+    location: class SocialForageEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:46: error: cannot find symbol
+      public void onEnd(SocialEntity entity, EndReason reason) {
+                                             ^
+    symbol:   class EndReason
+    location: class SocialForageEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:28: error: cannot find symbol
+      public boolean canPreempt(SocialEvent other) {
+                                ^
+    symbol:   class SocialEvent
+    location: class SocialRoostEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:33: error: cannot find symbol
+      public void onStart(TickContext context) {
+                          ^
+    symbol:   class TickContext
+    location: class SocialRoostEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:41: error: cannot find symbol
+      public boolean tick(TickContext context) {
+                          ^
+    symbol:   class TickContext
+    location: class SocialRoostEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:46: error: cannot find symbol
+      public void onEnd(SocialEntity entity, EndReason reason) {
+                        ^
+    symbol:   class SocialEntity
+    location: class SocialRoostEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:46: error: cannot find symbol
+      public void onEnd(SocialEntity entity, EndReason reason) {
+                                             ^
+    symbol:   class EndReason
+    location: class SocialRoostEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\ai\BatAmbientFlyGoal.java:51: error: cannot find symbol
+          Vec3 hoverPos = UniversalRandomPos.getHoverPos(
+                          ^
+    symbol:   variable UniversalRandomPos
+    location: class BatAmbientFlyGoal
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:43: error: cannot find symbol
+          return new StandardAerialNavigation(this, level);
+                     ^
+    symbol:   class StandardAerialNavigation
+    location: class BatMixin
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:64: error: cannot find symbol
+          this.goalSelector.addGoal(1, new UniversalBreedGoal(this, 1.0));
+                                           ^
+    symbol:   class UniversalBreedGoal
+    location: class BatMixin
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:65: error: cannot find symbol
+          this.goalSelector.addGoal(2, new UniversalTemptGoal(this, 1.0));
+                                           ^
+    symbol:   class UniversalTemptGoal
+    location: class BatMixin
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:54: error: cannot find symbol
+          SocialEntity socialEntity = context.entity();
+          ^
+    symbol:   class SocialEntity
+    location: class BatGuanoEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:88: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:93: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:98: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:103: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:108: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:113: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:118: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:21: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:26: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:31: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:36: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:41: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:52: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:104: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:10: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:15: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:20: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:25: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:32: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:40: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:45: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:12: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:17: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:22: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:27: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:32: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:40: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:45: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:12: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:17: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:22: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:27: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:32: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:40: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:45: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatExtensions.java:7: error: cannot find symbol
+  public interface BatExtensions extends SocialEntity, GroupMember<Bat>, net.dasik.social.api.breeding.UniversalAgeable {
+                                         ^
+    symbol: class SocialEntity
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatExtensions.java:7: error: cannot find symbol
+  public interface BatExtensions extends SocialEntity, GroupMember<Bat>, net.dasik.social.api.breeding.UniversalAgeable {
+                                                       ^
+    symbol: class GroupMember
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:13: error: cannot find symbol
+  public class BatGuanoEvent implements SocialEvent {
+                                        ^
+    symbol: class SocialEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:8: error: cannot find symbol
+  public class BatHuntEvent implements SocialEvent {
+                                       ^
+    symbol: class SocialEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:9: error: cannot find symbol
+  public class SocialForageEvent implements SocialEvent {
+                                            ^
+    symbol: class SocialEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:9: error: cannot find symbol
+  public class SocialRoostEvent implements SocialEvent {
+                                           ^
+    symbol: class SocialEvent
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\ai\BatAmbientFlyGoal.java:3: error: package net.dasik.social.ai.util does not exist
+  import net.dasik.social.ai.util.UniversalRandomPos;
+                                 ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatExtensions.java:3: error: package net.dasik.social.api.group does not exist
+  import net.dasik.social.api.group.GroupMember;
+                                   ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatExtensions.java:4: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.SocialEntity;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatExtensions.java:7: error: package net.dasik.social.api.breeding does not exist
+  public interface BatExtensions extends SocialEntity, GroupMember<Bat>, net.dasik.social.api.breeding.UniversalAgeable {
+                                                                                                      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:17: error: package net.dasik.social.api.breeding does not exist
+  import net.dasik.social.api.breeding.UniversalBreedGoal;
+                                      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:18: error: package net.dasik.social.api.breeding does not exist
+  import net.dasik.social.api.breeding.UniversalTemptGoal;
+                                      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:19: error: package net.dasik.social.ai.navigation does not exist
+  import net.dasik.social.ai.navigation.StandardAerialNavigation;
+                                       ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:109: error: package net.dasik.social.api.group.strategy does not exist
+      public net.dasik.social.api.group.strategy.FlockingStrategy getFlockingStrategy() {
+                                                ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:114: error: package net.dasik.social.api.group does not exist
+      public net.dasik.social.api.group.GroupParameters getGroupParameters() {
+                                       ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:3: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.SocialEvent;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:4: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.SocialEntity;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatGuanoEvent.java:5: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.TickContext;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:3: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.SocialEvent;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:4: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.SocialEntity;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\BatHuntEvent.java:5: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.TickContext;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:4: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.TickContext;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:6: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.SocialEntity;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialForageEvent.java:7: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.SocialEvent;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:4: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.TickContext;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:6: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.SocialEntity;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\social\events\SocialRoostEvent.java:7: error: package net.dasik.social.api does not exist
+  import net.dasik.social.api.SocialEvent;
+                             ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatEcologyMod.java:20: error: package net.dasik.social.api.breeding does not exist
+                  net.dasik.social.api.breeding.UniversalBreedingRegistry.register(
+                                               ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatEcologyMod.java:27: error: package net.dasik.social.api does not exist
+                  net.dasik.social.api.SocialEventRegistry.register(
+                                      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatEcologyMod.java:29: error: package net.dasik.social.api does not exist
+                  net.dasik.social.api.SocialEventRegistry.register(
+                                      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatEcologyMod.java:31: error: package net.dasik.social.api does not exist
+                  net.dasik.social.api.SocialEventRegistry.register(
+                                      ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\BatEcologyMod.java:49: error: package net.dasik.social.core does not exist
+                          net.dasik.social.core.GlobalSocialSystem.pulse(level);
+                                               ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:67: error: package net.dasik.social.ai.goal does not exist
+                  new net.dasik.social.ai.goal.FollowLeaderGoal((net.minecraft.world.entity.Mob) (Object) this));
+                                              ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:105: error: package net.dasik.social.core.group does not exist
+          return net.dasik.social.core.group.GroupManager.countGroupSize((Bat) (Object) this, Bat.class, 64.0);
+                                            ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:110: error: package net.dasik.social.api.group.strategy does not exist
+          return net.dasik.social.api.group.strategy.Strategies.AERIAL;
+                                                    ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\mixin\BatMixin.java:115: error: package net.dasik.social.api.group does not exist
+          return net.dasik.social.api.group.GroupParameters.DEFAULT_AERIAL;
+                                           ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\swarm\BatSwarmManager.java:51: error: package net.dasik.social.api.breeding does not exist
+              if (!(b instanceof net.dasik.social.api.breeding.UniversalAgeable))
+                                                              ^
+  E:\Minecraft Project\Vanilla Outsider Collections\Bat Ecology\src\main\java\net\vanillaoutsider\bat_ecology\swarm\BatSwarmManager.java:53: error: package net.dasik.social.api.breeding does not exist
+              return !((net.dasik.social.api.breeding.UniversalAgeable) b).isUniversalBaby();
+                                                     ^
+  99 errors
 
-For more on this, please refer to https://docs.gradle.org/9.2.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to generate a Build Scan (powered by Develocity).
 
-BUILD SUCCESSFUL in 10s
-6 actionable tasks: 4 executed, 2 up-to-date
+BUILD FAILED in 1s
+1 actionable task: 1 executed

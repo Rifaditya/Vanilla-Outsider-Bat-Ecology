@@ -1,5 +1,9 @@
 # Release History
 
+## v1.8.7 - 2026-02-13
+
+- **Bug Fix**: Rewrote ambient flight goal to respect aerial navigation constraints, fixing the ground movement bug.
+
 ## v1.8.6 - 2026-02-13
 
 - **Core Migration**: Implemented `StandardAerialNavigation`. Logic for pathing is now centralized in DasikLibrary.
